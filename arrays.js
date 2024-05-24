@@ -1,23 +1,24 @@
 /**
  * Array Common patterns
  *
- * 1. Two Sum (Two Pointers)
- * 2. Max Subarray Sum (Sliding window)
- * 3. Max Contiguous Subarray Sum (Kadane's Algo)
- * 4. Binary search
- * 5. Subarray Sum Equals K (Prefix sums)
- * 6. Range Sum Query - Immutable (Prefix sums)
- * 7. Combindation Sums (Backtracking)
- * 8. Permutations (Backtracking)
- * 9. House Robber (Dynamic Programming on Arrays)
- * 10. Next Greater Element (Monotonic Stack)
- * 11. Dutch national flag algo
- * 12. Merge Intervals (Sorting and Greedy)
- * 13. Find Interval Overlaps
- * 14. Meeting Rooms
+ * 1a. Two Sum (Two Pointers)
+ * 2a. Max Sum Subarray Size K (Sliding Window)
+ * 2b. Longest Substring Without Repeating Characters
+ * 3a. Max Contiguous Subarray Sum (Kadane's Algo)
+ * 4a. Binary search
+ * 5a. Subarray Sum Equals K (Prefix sums)
+ * 5b. Range Sum Query - Immutable (Prefix sums)
+ * 6a. Combindation Sums (Backtracking)
+ * 6b. Permutations (Backtracking)
+ * 7a. House Robber (Dynamic Programming on Arrays)
+ * 8a. Next Greater Element (Monotonic Stack)
+ * 9a. Dutch national flag algo
+ * 10a. Merge Intervals (Sorting and Greedy)
+ * 10b. Find Interval Overlaps (Greedy)
+ * 10c. Meeting Rooms (Greedy)
  */
 
-// 1. Two Pointers
+// 1a. Two Pointers
 // Pattern: Use two pointers to iterate from the beginning and end of the array towards the center
 // Problem: find the indices of two numbers that sum to target in sorted array
 function twoSum(nums, target) {
@@ -32,7 +33,7 @@ function twoSum(nums, target) {
   return [];
 }
 
-// 2. Sliding Window
+// 2a. Max Sum Subarray Size K (Sliding Window)
 // Pattern: Use a window (sub-array) of fixed size to slide over the array
 // Problem: find max sum of subarray of size k
 function maxSubArraySum(nums, k) {
@@ -50,7 +51,24 @@ function maxSubArraySum(nums, k) {
   return max;
 }
 
-// 3. Kadane's Algo
+// 2b. Longest Substring Without Repeating Characters (Sliding Window & Two Pointers)
+// Pattern: Use a window that slides over the array to keep track of a subset of elements
+// Problem: Find the length of the longest substring without repeating characters
+function lengthOfLongestSubstring(s) {
+  let max = 0, windowStart = 0, charIndexMap = new Map();
+
+  for (let windowEnd = 0; windowEnd < s.length; windowEnd++) {
+    const char = s[windowEnd];
+    if (charIndexMap.has(char)) {
+      windowStart = Math.max(windowStart, charIndexMap.get(char) + 1);
+    }
+    charIndexMap.set(char, windowEnd);
+    max = Math.max(max, windowEnd - windowStart + 1);
+  }
+  return max;
+}
+
+// 3a. Kadane's Algo
 // Pattern: Used to find the maximum sum subarray in linear time
 // Problem: Find the maximum sum of a contiguous subarray
 function maxSubArray(nums) {
@@ -63,7 +81,7 @@ function maxSubArray(nums) {
   return max;
 }
 
-// 4. Binary Search
+// 4a. Binary Search
 // Pattern: Efficiently find elements or conditions in a sorted array
 // Problem: find the first position of a target value in a sorted array
 function binarySearch(nums, target) {
@@ -78,7 +96,7 @@ function binarySearch(nums, target) {
   return -1;
 }
 
-// 5. Subarray Sum Equals K (Prefix sums)
+// 5a. Subarray Sum Equals K (Prefix sums)
 // Pattern:  Use cumulative sums to simplify calculations of subarray sums
 // Problem: Find the number of subarrays with a sum equal to k.
 function subArraySum(nums, k) {
@@ -92,34 +110,34 @@ function subArraySum(nums, k) {
   return count;
 }
 
-// 6. Range Sum Query - Immutable (Prefix sums)
+// 5b. Range Sum Query - Immutable (Prefix sums)
 // Pattern: Use cumulative sums to simplify calculations of subarray sums
 // Problem: Find the sum of elements between indices i and j
 
-// 7. Combindation Sums (Backtracking)
+// 6a. Combindation Sums (Backtracking)
 // Pattern: Use backtracking to explore all possible solutions
 // Problem: Find all combindations that sum up to a target
 
-// 8. Permutations (Backtracking)
+// 6b. Permutations (Backtracking)
 // Pattern: Use backtracking to explore all possible solutions
 // Problem: Generate all possible permutations of the array
 
-// 9. House Robber (Dynamic Programming on Arrays)
+// 7a. House Robber (Dynamic Programming on Arrays)
 // Pattern: Use DP to solve problems by breaking them into smaller subproblems
 // Problem: Maximize the sum of non-adjacent numbers
 
-// 10. Next Greater Element (Monotonic Stack)
+// 8a. Next Greater Element (Monotonic Stack)
 // Pattern: Use a stack to maintain a sequence in a mnotonic order
 // Problem: Find the next greater element for each element in the array
 
-// 11. Dutch national flag algo
+// 9a. Dutch national flag algo
 // Pattern: Partition an array into three parts based on a pivot
 // Problem: Sort an array of 0s, 1s, and 2s
 function sortColors(num) {
 
 }
 
-// 12. Merge Intervals (Sorting and Greedy)
+// 10a. Merge Intervals (Sorting and Greedy)
 // Pattern: Manipulate intervals to find overlaps, merges, or gaps
 // Problem: Merge overlapping intervals
 function mergeIntervals(intervals) {
@@ -141,33 +159,40 @@ function mergeIntervals(intervals) {
   return result;
 }
 
-// 13. Find Interval Overlaps
+// 10b. Find Interval Overlaps (Greedy)
 // Pattern: Manipulate intervals to find overlaps, merges, or gaps
 // Problem: Find overlapping intervals
 function isIntervalOverlap(intervalOne, intervalTwo) {
   return Math.max(intervalOne.start, intervalTwo.start) < Math.min(intervalOne.end, intervalTwo.end);
 }
 
-// 14. Meeting Rooms
+// 10c. Meeting Rooms (Greedy)
 // Pattern: Sort the array then apply a greedy approach to solve problem
 // Problem: Determine if a person could attend all meetings
 function meetingRooms(meetings, person) {
 
 }
 
-const r1 = twoSum([0, 1, 2, 3, 4, 5, 6, 7, 8], 7);
-console.log("Two sums", r1[0] === 0 && r1[1] === 7 ? "Pass" : "Fail");
-const r2 = maxSubArraySum([1, 10, 2, 20, 3, 4, 5], 3);
-console.log("Max sum subarray k ", r2 === 32 ? "Pass" : "Fail");
-const r3 = maxSubArray([-2, -3, 4, -1, -2, 1, 5, -3]);
-console.log('Max sum subarray ', r3 === 7 ? 'Pass' : 'Fail');
-const r4 = binarySearch([0, 1, 2, 3, 4, 5], 3);
-console.log("Binary search ", r4 === 3 ? "Pass" : "Fail");
-const r5 = subArraySum([1, 2, 3, 0, 5], 3);
-console.log("Subarray Sum ", r5 === 3 ? "Pass" : "Fail");
+const res1a = twoSum([0, 1, 2, 3, 4, 5, 6, 7, 8], 7);
+console.log("1a ", res1a[0] === 0 && res1a[1] === 7 ? "Pass" : "Fail");
 
-const r11 = mergeIntervals([[1,3],[2,6],[8,10],[15,18]]);
-console.log('Merge intervals ', r11[0][0] === 1 && r11[0][1] === 6 && r11[1][0] === 8 && r11[1][1] === 10 && r11[2][0] === 15 && r11[2][1] === 18 ? 'Pass' : 'Fail');
+const res2a = maxSubArraySum([1, 10, 2, 20, 3, 4, 5], 3);
+console.log("2a ", res2a === 32 ? "Pass" : "Fail");
 
-const r12 = isIntervalOverlap({start: 1, end: 5}, {start: 4, end: 10});
-console.log('Find interval overlap ', r12 ? 'Passs' : 'Fail');
+const res2b = lengthOfLongestSubstring('abcdeee');
+console.log('2b ', res2b === 5 ? 'Pass' : 'Fail');
+
+const res3a = maxSubArray([-2, -3, 4, -1, -2, 1, 5, -3]);
+console.log('3a ', res3a === 7 ? 'Pass' : 'Fail');
+
+const res4a = binarySearch([0, 1, 2, 3, 4, 5], 3);
+console.log("4a ", res4a === 3 ? "Pass" : "Fail");
+
+const res5a = subArraySum([1, 2, 3, 0, 5], 3);
+console.log("5a ", res5a === 3 ? "Pass" : "Fail");
+
+const res10a = mergeIntervals([[1,3],[2,6],[8,10],[15,18]]);
+console.log('12a ', res10a[0][0] === 1 && res10a[0][1] === 6 && res10a[1][0] === 8 && res10a[1][1] === 10 && res10a[2][0] === 15 && res10a[2][1] === 18 ? 'Pass' : 'Fail');
+
+const res10b = isIntervalOverlap({start: 1, end: 5}, {start: 4, end: 10});
+console.log('13a ', res10b ? 'Passs' : 'Fail');
