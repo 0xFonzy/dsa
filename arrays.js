@@ -1,17 +1,19 @@
 /**
  * Array Common patterns
  *
- * 1. Two pointers
- * 2. Sliding window
- * 3. Kadane's Algo
+ * 1. Two Sum (Two Pointers)
+ * 2. Max Subarray Sum (Sliding window)
+ * 3. Max Contiguous Subarray Sum (Kadane's Algo)
  * 4. Binary search
- * 5. Prefix sums
- * 6. Sorting and Greedy Algos
- * 7. Backtracking
- * 8. Dynamic Programming on Arrays
- * 9. Monotonic Stack
+ * 5. Subarray Sum Equals K (Prefix sums)
+ * 6. Combindation Sums (Backtracking)
+ * 7. Permutations (Backtracking)
+ * 8. House Robber (Dynamic Programming on Arrays)
+ * 9. Next Greater Element (Monotonic Stack)
  * 10. Dutch national flag algo
- * 11. Merge Intervals
+ * 11. Merge Intervals (Sorting and Greedy)
+ * 12. Find Interval Overlaps
+ * 13. Meeting Rooms
  */
 
 // 1. Two Pointers
@@ -89,22 +91,30 @@ function subArraySum(nums, k) {
   return count;
 }
 
-// 6. Sorting and Greedy Algos
-// Problem:
+// 6. Combindation Sums (Backtracking)
+// Pattern: Use backtracking to explore all possible solutions
+// Problem: Find all combindations that sum up to a target
 
-// 7. Backtracking
-// Problem:
+// 7. Permutations (Backtracking)
+// Pattern: Use backtracking to explore all possible solutions
+// Problem: Generate all possible permutations of the array
 
-// 8. Dynamic Programming on Arrays
-// Problem:
+// 8. House Robber (Dynamic Programming on Arrays)
+// Pattern: Use DP to solve problems by breaking them into smaller subproblems
+// Problem: Maximize the sum of non-adjacent numbers
 
-// 9. Monotonic Stack
-// Problem:
+// 9. Next Greater Element (Monotonic Stack)
+// Pattern: Use a stack to maintain a sequence in a mnotonic order
+// Problem: Find the next greater element for each element in the array
 
 // 10. Dutch national flag algo
-// Problem:
+// Pattern: Partition an array into three parts based on a pivot
+// Problem: Sort an array of 0s, 1s, and 2s
+function sortColors(num) {
 
-// 11. Merge Intervals
+}
+
+// 11. Merge Intervals (Sorting and Greedy)
 // Pattern: Manipulate intervals to find overlaps, merges, or gaps
 // Problem: Merge overlapping intervals
 function mergeIntervals(intervals) {
@@ -113,13 +123,14 @@ function mergeIntervals(intervals) {
   const result = [intervals[0]];
 
   for (let i = 1; i < intervals.length; i++) {
-    const prev = result[result.length - 1];
-    const current = intervals[i];
+    const prev = result[result.length-1];
+    const curr = intervals[i];
 
-    if (prev[1] >= current[0]) {
-      prev[1] = Math.max(prev[1], current[1]);
+    // compare prev y to curr x
+    if (prev[1] >= curr[0]) {
+      prev[1] = Math.max(prev[1], curr[1]);
     } else {
-      result.push(current);
+      result.push(curr);
     }
   }
   return result;
@@ -132,6 +143,13 @@ function isIntervalOverlap(intervalOne, intervalTwo) {
   return Math.max(intervalOne.start, intervalTwo.start) < Math.min(intervalOne.end, intervalTwo.end);
 }
 
+// 13. Meeting Rooms
+// Pattern: Sort the array then apply a greedy approach to solve problem
+// Problem: Determine if a person could attend all meetings
+function meetingRooms(meetings, person) {
+
+}
+
 const r1 = twoSum([0, 1, 2, 3, 4, 5, 6, 7, 8], 7);
 console.log("Two sums", r1[0] === 0 && r1[1] === 7 ? "Pass" : "Fail");
 const r2 = maxSubArraySum([1, 10, 2, 20, 3, 4, 5], 3);
@@ -142,6 +160,9 @@ const r4 = binarySearch([0, 1, 2, 3, 4, 5], 3);
 console.log("Binary search ", r4 === 3 ? "Pass" : "Fail");
 const r5 = subArraySum([1, 2, 3, 0, 5], 3);
 console.log("Subarray Sum ", r5 === 3 ? "Pass" : "Fail");
+
+const r11 = mergeIntervals([[1,3],[2,6],[8,10],[15,18]]);
+console.log('Merge intervals ', r11[0][0] === 1 && r11[0][1] === 6 && r11[1][0] === 8 && r11[1][1] === 10 && r11[2][0] === 15 && r11[2][1] === 18 ? 'Pass' : 'Fail');
 
 const r12 = isIntervalOverlap({start: 1, end: 5}, {start: 4, end: 10});
 console.log('Find interval overlap ', r12 ? 'Passs' : 'Fail');
