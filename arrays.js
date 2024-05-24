@@ -6,14 +6,15 @@
  * 3. Max Contiguous Subarray Sum (Kadane's Algo)
  * 4. Binary search
  * 5. Subarray Sum Equals K (Prefix sums)
- * 6. Combindation Sums (Backtracking)
- * 7. Permutations (Backtracking)
- * 8. House Robber (Dynamic Programming on Arrays)
- * 9. Next Greater Element (Monotonic Stack)
- * 10. Dutch national flag algo
- * 11. Merge Intervals (Sorting and Greedy)
- * 12. Find Interval Overlaps
- * 13. Meeting Rooms
+ * 6. Range Sum Query - Immutable (Prefix sums)
+ * 7. Combindation Sums (Backtracking)
+ * 8. Permutations (Backtracking)
+ * 9. House Robber (Dynamic Programming on Arrays)
+ * 10. Next Greater Element (Monotonic Stack)
+ * 11. Dutch national flag algo
+ * 12. Merge Intervals (Sorting and Greedy)
+ * 13. Find Interval Overlaps
+ * 14. Meeting Rooms
  */
 
 // 1. Two Pointers
@@ -77,7 +78,7 @@ function binarySearch(nums, target) {
   return -1;
 }
 
-// 5. Prefix Sums
+// 5. Subarray Sum Equals K (Prefix sums)
 // Pattern:  Use cumulative sums to simplify calculations of subarray sums
 // Problem: Find the number of subarrays with a sum equal to k.
 function subArraySum(nums, k) {
@@ -91,30 +92,34 @@ function subArraySum(nums, k) {
   return count;
 }
 
-// 6. Combindation Sums (Backtracking)
+// 6. Range Sum Query - Immutable (Prefix sums)
+// Pattern: Use cumulative sums to simplify calculations of subarray sums
+// Problem: Find the sum of elements between indices i and j
+
+// 7. Combindation Sums (Backtracking)
 // Pattern: Use backtracking to explore all possible solutions
 // Problem: Find all combindations that sum up to a target
 
-// 7. Permutations (Backtracking)
+// 8. Permutations (Backtracking)
 // Pattern: Use backtracking to explore all possible solutions
 // Problem: Generate all possible permutations of the array
 
-// 8. House Robber (Dynamic Programming on Arrays)
+// 9. House Robber (Dynamic Programming on Arrays)
 // Pattern: Use DP to solve problems by breaking them into smaller subproblems
 // Problem: Maximize the sum of non-adjacent numbers
 
-// 9. Next Greater Element (Monotonic Stack)
+// 10. Next Greater Element (Monotonic Stack)
 // Pattern: Use a stack to maintain a sequence in a mnotonic order
 // Problem: Find the next greater element for each element in the array
 
-// 10. Dutch national flag algo
+// 11. Dutch national flag algo
 // Pattern: Partition an array into three parts based on a pivot
 // Problem: Sort an array of 0s, 1s, and 2s
 function sortColors(num) {
 
 }
 
-// 11. Merge Intervals (Sorting and Greedy)
+// 12. Merge Intervals (Sorting and Greedy)
 // Pattern: Manipulate intervals to find overlaps, merges, or gaps
 // Problem: Merge overlapping intervals
 function mergeIntervals(intervals) {
@@ -136,14 +141,14 @@ function mergeIntervals(intervals) {
   return result;
 }
 
-// 12. Find Interval Overlaps
+// 13. Find Interval Overlaps
 // Pattern: Manipulate intervals to find overlaps, merges, or gaps
 // Problem: Find overlapping intervals
 function isIntervalOverlap(intervalOne, intervalTwo) {
   return Math.max(intervalOne.start, intervalTwo.start) < Math.min(intervalOne.end, intervalTwo.end);
 }
 
-// 13. Meeting Rooms
+// 14. Meeting Rooms
 // Pattern: Sort the array then apply a greedy approach to solve problem
 // Problem: Determine if a person could attend all meetings
 function meetingRooms(meetings, person) {
